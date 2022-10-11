@@ -8,12 +8,12 @@ const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options)
 export default authHandler;
 
 const options = {
-  secret: process.env.NEXTAUTHSECRET,
+  secret: process.env.NEXTAUTH_SECRET,
+  adapter: PrismaAdapter(prisma),
   providers: [
     GitHubProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
-  adapter: PrismaAdapter(prisma),
 }
